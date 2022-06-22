@@ -3,6 +3,8 @@ import discord
 from discord.ext import commands
 from youtube_dl import YoutubeDL
 import asyncio
+import ffmpeg
+
 
 
 YDL_OPTIONS = {'format': 'worstaudio/best', 'noplaylist': 'False', 'simulate': 'True',
@@ -31,7 +33,7 @@ async def play(ctx, arg):
 
         URL = info['formats'][0]['url']
 
-        vc.play(discord.FFmpegPCMAudio(source=URL, **FFMPEG_OPTIONS))
+        vc.play(discord.FFmpegPCMAudio(executable='ffmpeg',source=URL, **FFMPEG_OPTIONS))
 
         while vc.is_playing():
             await asyncio.sleep(1)
