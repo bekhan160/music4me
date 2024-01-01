@@ -1,1 +1,1 @@
-worker: python music4me2022.py
+worker: python app.py
